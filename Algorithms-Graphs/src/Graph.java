@@ -7,8 +7,6 @@ import java.util.SortedSet;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
-import Graph.DFS_Data;
-
 public class Graph<V extends Comparable<V>> {
 
 	private SortedMap<V, TreeSet<V>> vertexToIncidences = new TreeMap<V, TreeSet<V>>();
