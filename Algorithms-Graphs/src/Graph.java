@@ -1,10 +1,13 @@
 
-
+import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.SortedMap;
 import java.util.SortedSet;
 import java.util.TreeMap;
 import java.util.TreeSet;
+
+import Graph.DFS_Data;
 
 public class Graph<V extends Comparable<V>> {
 
@@ -49,20 +52,53 @@ public class Graph<V extends Comparable<V>> {
 	}
 
 	/**
-	 * @returns a BFS Tree. If the graph does not contain source return an empty
-	 *          tree.
+	 * @returns a BFS Tree where the search starts at source. If the graph does not
+	 *          contain the source return an empty tree.
 	 */
 	public Graph<V> BFSTree(V source) {
 		return BFSTree(source, null);
 	}
 
 	/**
-	 * @returns a BFS Tree. If the graph does not contain source return an empty
-	 *          tree. If distances is not null, then after performing this
-	 *          method, distances will contain a map represents the distances of all
-	 *          the reachable vertices from source.
+	 * @returns a BFS Tree where the search starts at source. If the graph does not
+	 *          contain the source return an empty tree. If distances is not null,
+	 *          then after performing this method, distances will contain a map
+	 *          represents the distances of all the reachable vertices from source.
 	 */
 	public Graph<V> BFSTree(V source, SortedMap<V, Integer> distances) {
+		// TODO Add implementation
+	}
+
+	/**
+	 * @returns a DFS Tree where the search starts at source. If the graph does not
+	 *          contain the source return an empty tree.
+	 * 
+	 *          If vertexToVisitingTime is not null then after performing the method
+	 *          it will contain a map representing the visiting time (arrival and
+	 *          leaving) of the vertices. The arrival and the leaving time are in
+	 *          indices 0 and 1, respectively.
+	 * 
+	 *          If isAcyclicGraph is not null then after performing the method it
+	 *          will represents whether the contains a cycle or not.
+	 * 
+	 */
+	public Graph<V> DFSTree(V source, DFS_Data DFS_data) {
+		// TODO Add implementation
+	}
+
+	/**
+	 * @returns a DFS Tree where the search starts at source. If the graph does not
+	 *          contain the source return an empty tree.
+	 */
+	public Graph<V> DFSTree(V source) {
+		// TODO Add implementation
+	}
+
+	/**
+	 * @returns list of the vertices according to a topological order. If there's no
+	 *          topological order, then return null.
+	 */
+	public List<V> topologicalOrder() {
 		// TODO Add implementation
 	}
 
@@ -94,6 +130,38 @@ public class Graph<V extends Comparable<V>> {
 			sb.append(u.toString());
 		}
 		return sb.toString();
+	}
+
+	public class DFS_Data {
+		private SortedMap<V, int[]> vertexToVisitingTime;
+		private boolean isAcyclicGraph = true;
+
+		public DFS_Data() {
+			vertexToVisitingTime = new TreeMap<V, int[]>();
+			isAcyclicGraph = true;
+		}
+
+		private void clear() {
+			vertexToVisitingTime.clear();
+			isAcyclicGraph = true;
+		}
+
+		public SortedMap<V, int[]> getVertexToVisitingTime() {
+			return vertexToVisitingTime;
+		}
+
+		public String getVertexToVisitingTimeString() {
+			StringBuilder sb = new StringBuilder();
+			for (Map.Entry<V, int[]> v : vertexToVisitingTime.entrySet()) {
+				sb.append(v.getKey() + ": " + v.getValue()[0] + "," + v.getValue()[1] + "\n");
+			}
+			return sb.toString();
+		}
+
+		public boolean isAcyclicGraph() {
+			return isAcyclicGraph;
+		}
+
 	}
 
 }
